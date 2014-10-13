@@ -9,20 +9,21 @@ Sensors: Accelerometer, gyro, proximity, compass, barometer
 Memory:  16 GB internal storage, 1 GB RAM
 
 Chips inside:
-Texas Instruments TWL6040 8-Channel High Quality Low-Power Audio Codec
-Texas Instruments TWL6030 Fully Integrated Power Management with Switch Mode Charger
-Invensense MPU-3050 Motion Processing Unit
-Intel XG626 Baseband Modem
-Bosch BMP180 MEMS Pressure Sensor
-RFMD RF6260 Quad-band Multimode Power Amplifier Module
-Samsung KMVYL000LM Multichip Memory Package
-Samsung K3PE7E700M 512 MB DDR2 SDRAM
-Samsung SWB-B42 BT 4.0 Dual Band Wlan FM Tx/Rx
-NXP 65N00 Smart Card IC. According to Chipworks, this two-die package houses an MCU and a PN544 NFC controller.
-Silicon Image 9244 MHL transmitter
-SiRF SiRFstarIV GSD4t GPS tracker
-A Melfas 8PK173 1126 Touch Screen Controller 
-Datasheet: http://www.ti.com/lit/ug/swpu235ab/swpu235ab.pdf
+ Texas Instruments TWL6040 8-Channel High Quality Low-Power Audio Codec
+ Texas Instruments TWL6030 Fully Integrated Power Management with Switch Mode Charger
+ Invensense MPU-3050 Motion Processing Unit
+ Intel XG626 Baseband Modem
+ Bosch BMP180 MEMS Pressure Sensor
+ RFMD RF6260 Quad-band Multimode Power Amplifier Module
+ Samsung KMVYL000LM Multichip Memory Package
+ Samsung K3PE7E700M 512 MB DDR2 SDRAM
+ Samsung SWB-B42 BT 4.0 Dual Band Wlan FM Tx/Rx
+ NXP 65N00 Smart Card IC
+ Silicon Image 9244 MHL transmitter
+ SiRF SiRFstarIV GSD4t GPS tracker
+ A Melfas 8PK173 1126 Touch Screen Controller 
+ 
+ Datasheet: http://www.ti.com/lit/ug/swpu235ab/swpu235ab.pdf
 
 The Cortex-A9 MPU subsystem of TI OMAP 4460 integrates the following submodules:
 • ARM Cortex-A9 MPCore
