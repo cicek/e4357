@@ -1,0 +1,22 @@
+HW3
+///////////////////////////////////////////////////////////////////////////////////
+Read Chapter 1,2,3, and Chapter 14
+   Program Example 14.1 Manipulating control registers to flash an LED
+   Program Example 14.3 Combined digital input and output.
+   Compile and download Program Example 14.1 and 14.3 into your mbed board.
+   ////////////////////////////////////////////////////////////////////////////////
+
+The examples in the 3rd chapter uses mbed API libraries. All the program examples start with including mbed.h. It is easier to write simple programs this way. It is sufficient to call DigitalIn/DigitalOut methods for corresponding pin in the program to work with digital I/Os. 14th chapter discusses the ways to write programs without including mbed.h. In this approach, it is needed to set control registers and reach data registers manually in the code to work with digital I/Os. So, the programs are usually longer and harder to follow. But this approach also brings the advantage of reaching some options otherwise unavailable.    
+
+I read Chapters 1, 2, 3 and did the experiments explained in example 14.1, 14.2 and 14.3. You can find the photos and videos of the test set-up in this url: https://drive.google.com/drive/#folders/0B0LDTU59MYiieTRVSTQweHUtNTQ   
+In example 14.1, a single led is blinking.
+In example 14.2, a second led is added and one of them is blinking at a time in a pattern of LED1->LED2->LED2->LED2. 
+In example 14.3, a push-button switch is added. 
+Blinking pattern is altered between LED1->LED2->LED2->LED2 and LED2->LED1->LED1->LED1 according to the push-button position.
+
+Key points about these programs:
+- shows how to set and reach digital I/Os individually, without using the high level functions of mbed.h.
+- includes examples of masking
+  - bitwise and with 0 to reset a bit
+  - bitwise or with 1 to set a bit
+- includes a delay function which is defined as an empty for-loop
