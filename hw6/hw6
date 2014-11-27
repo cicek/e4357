@@ -35,11 +35,16 @@ inline int CircularBufferPrint(CircularBuffer* que)
 Circular buffer is a data structure that uses a single fixed-size buffer as if it were connected end-to-end. 
 This structure has a FIFO characteristics. 
 
-This implementation is called keep one slot open. The buffer has a fixed-size. Two pointers are used to show the start and end locations. One slot from the memory is always non-allocated. So, the used maximum size of the memory is buffer_size-1. This is the drawback of this design otherwise robust and simple.
+This implementation is called keep one slot open. The buffer has a fixed-size. 
+Two pointers are used to show the start and end locations. 
+One slot from the memory is always non-allocated. So, the used maximum size of the memory is buffer_size-1. 
+This is the drawback of this design otherwise robust and simple.
 
 The library functions are as follows:
 
-// Checks if the end pointer refers to the slot preceding the one referred to by the start pointer. If so, the buffer is full // (Here, the end pointer is called write pointer and the start pointer is the read pointer.)
+// Checks if the end pointer refers to the slot preceding the one referred to by the start pointer. 
+// If so, the buffer is full 
+// (Here, the end pointer is called write pointer and the start pointer is the read pointer.)
 
 inline int CircularBufferIsFull(CircularBuffer* que)
 {
@@ -142,4 +147,5 @@ int main(int argc, char *argv[])
 I observed the results using TeraTerm. The terminal output can be seen at:  
 https://drive.google.com/drive/#folders/0B0LDTU59MYiieTRVSTQweHUtNTQ  - circular_buffer_output.png 
 
-Note: I used the implementaion on the wikipedia stub. I hed to remove #include <malloc.h> to make the program compile.
+Note: I used the implementaion on the wikipedia stub. 
+I had to remove #include <malloc.h> to make the program compile.
