@@ -1,0 +1,44 @@
+
+--------------------------------------------------------------------
+Q1: How many microcontrollers in the mbed LPC1768 board?
+
+Answer: 
+
+There are two microcontrollers on the mbed LPC1768 board. 
+First one is LPC1768 which is the core of the mbed board. 
+Second microcontroller is the interface microcontroller which controls the USB interface of the mbed with PC.
+
+--------------------------------------------------------------------
+Q2: What is the size (in GB) of the Flash Memory ("USB Dsik") of the LPC1768?
+
+Answer:
+
+The mbed has 512 kb of flash in the LPC1768 IC and 2e-3 GB (2MB) of USB disk space on the mbed.  
+
+--------------------------------------------------------------------
+Q3: Name 3 functions (or features) that mbed USB cable provided:
+
+Answer:
+
+ 1. Powering the nbed board
+ 2. Programming the LPC1768 over USB port
+ 3. Providing a communications channel between the host PC and the mbed 
+ 
+--------------------------------------------------------------------
+Q4: What is the name of the Ethernet PHY chip in the mbed board (LPC1768)?
+
+Answer:
+
+It is DP83848J PHYTER Mini LS Commercial Temperature Single Port 10/100 Mb/s Ethernet Transceiver. 
+Product page: http://www.ti.com/product/dp83848j
+
+--------------------------------------------------------------------
+Q5: Reference LPC17xx_UM10360.pdf (Chapter 2)
+   What are the GPIO address window?
+
+Answer:
+
+There are 70 GPIO pins on LPC1768.
+Reachable ones on the mbed board are at mbed board pin #5 to #30. 
+
+--------------------------------------------------------------------
