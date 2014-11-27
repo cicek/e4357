@@ -6,26 +6,47 @@ inline int CircularBufferIsEmpty(CircularBuffer* que)
 
 
 
+Answer:
+
+inline int CircularBufferIsFull(CircularBuffer* que)
+{
+#if IS_BUFFER_SIZE_POWER_OF_TWO
+     return (((que->writePointer + 1) & que->mask) == que->readPointer); 
+#else
+     return (((que->writePointer + 1) % que->size) == que->readPointer); 
+#endif
+}
+
+inline int CircularBufferIsEmpty(CircularBuffer* que)
+{
+     return (que->readPointer == que->writePointer); 
+}
 
 --------------------------------------------------------------------
 Q2: How to compute "Interrupt Latency"?
 
+Answer:
 
+System interrupt latency can be defined as the interval between the assertion of the interrupt signal 
+and the starting of the code to process that interrupt.
+The latency can be measured using an oscilloscope. One GPIO pin is toggled at the start of the interrupt service 
+routine, while the interrupt signal is output to another GPIO pin. The delay can be measured 
+by observing these two pins at the same time. 
 
 --------------------------------------------------------------------
 Q3: Serial pc(USBTX, USBRX); // tx, rx 
     What API (function) do you use to change the baud rate?
 
+Answer:
 
-
+pc.baud([baud_rate])
 
 --------------------------------------------------------------------
 Q4: How many bit(s) does TDO have? Is TDO an input or output type? (Ref: JTAG Pins) 
 
+Answer:
 
-
-
-
+TDO (Test Data Out) – is a single output bit of standard JTAG connections. 
 
 --------------------------------------------------------------------
 Q5:
