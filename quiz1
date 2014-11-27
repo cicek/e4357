@@ -7,7 +7,11 @@ Q1: Is there any compile error with the following code (if any)?
  
 Explain:
 
-
+No, because the “3[Arr] = 7;” line equates a cell in the memory to 7 
+which can be  represented as following equally:
+ 
+Arr[3] -> *(Arr+3)
+3[Arr] -> *(3+Arr)
 
 
 --------------------------------------------------------------------
