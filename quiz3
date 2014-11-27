@@ -3,33 +3,47 @@ BEGIN
 1. What is the _mask value for LED1? 
    What is the address of FIOSET?
 
+Answer:
 
+LED1 is connected to GPIO1 port bit 18. led1 bit mask = 0x00040000 where 
+0x040000 = 1<<18 all "0"s with a "1" in bit 18
 
-
+The addresses of FIOSET Fast Port Output Set registers:
+FIO0SET - 0x2009 C018
+FIO1SET - 0x2009 C038
+FIO2SET - 0x2009 C058
+FIO3SET - 0x2009 C078
+FIO4SET - 0x2009 C098
 
 --------------------------------------------------------------------
 2. What is the RS232 Frame?
 
+Answer:
 
-
-
+The RS232 frame consists of one start bit, 7 or 8 data bits, parity bits and stop bits.
 
 --------------------------------------------------------------------
 3. Explain the start and stop conditions of i2c?
 
+Answer:
 
-
-
-
+Start condition is negative edge of SDA line when SCL line is high. 
+Stop condition is positive edge SDA line when SCL line is high.
 
 --------------------------------------------------------------------
 4. Is the i2c acknowledge SDA LOW or SDA HIGH?
 
+Answer:
 
-
-
-
+SDA is LOW for acknowledge signal, HIGH for not acknowledge signal.
 
 --------------------------------------------------------------------
 5. Tell me about the DDR3 write leveling Concept in one sentence.  
    (ref: slides)
+
+Answer:
+
+Write leveling is a calibration mechanism for DDR3 interface where the possible data(DQS)/clock mismatches are 
+fixed and clock and DQS are re-aligned.
+
+--------------------------------------------------------------------
