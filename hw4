@@ -6,7 +6,8 @@ Read Chapter 7
 
 Program Example 7.9 Bidirectional Data transfer between two mbed UARTs.
 Work with a classmate as a team for this Program Assignment.  
-Connect two mbeds as show in Figure 7.13, and compile and download Program Example 7.9 into each.  You should find that the switches from one mbed control the LEDs from the other, and vice versa.
+Connect two mbeds as show in Figure 7.13, and compile and download Program Example 7.9 into each.  
+You should find that the switches from one mbed control the LEDs from the other, and vice versa.
 ////////////////////////////////////////////////////////////////////////////
 
 I read the Chapter 7. First, I did experiment explained in section 7.2.3. 
@@ -20,33 +21,35 @@ Next, I did I2C communication with temperature sensor experiment.
 I have TI’s TMP102 temperature sensor breakout board as we use this part in our final project as Group#5.
 
 I tested the outputs by observing the serial terminal with TeraTerm program. 
-The circuit can be seen in example_7_7_circuit.jpg and the output capture is at example_7_7.jpg in the following folder:    
+The circuit can be seen in example_7_7_circuit.jpg and the output capture is at example_7_7.jpg 
+in the following folder:    
 https://drive.google.com/drive/#folders/0B0LDTU59MYiieTRVSTQweHUtNTQ 
 
 I observed that the ambient temperature was around 29.5 Degrees-Celsius. 
-I saw that the temperature rose to 32.44 Degrees-Celsius as I press my finger against the sensor after about 10 readings, 
-and slowly drops to the ambient temperature as I removed my finger.
+I saw that the temperature rose to 32.44 Degrees-Celsius as I press my finger against the sensor 
+after about 10 readings, and slowly drops to the ambient temperature as I removed my finger.
 
-Then, I connected two mbeds as in Figure 7.9 and tested I2C master-slave example. In this example, a pair of LEDs and switches 
-are connected to both master and slave mbeds. The aim is to get the switches of the master to control the LEDs on the slave, 
-and vice versa.
+Then, I connected two mbeds as in Figure 7.9 and tested I2C master-slave example. In this example, a pair of LEDs 
+and switches are connected to both master and slave mbeds. The aim is to get the switches of the master to control 
+the LEDs on the slave, and vice versa.
 
 The code for the master is provided in program 7.5. The I2C serial port is configured using the mbed utility I2C. 
-An arbitrary slave address is chosen (0x52). In main, two I2C communication cycles are created, first one is write which 
-carries the switch positions of the master switch_word, and the second one is an I2C read cycle which receives one byte switch
-position from the slave and records it to the register recd_val.
+An arbitrary slave address is chosen (0x52). In main, two I2C communication cycles are created, first one is write 
+which carries the switch positions of the master switch_word, and the second one is an I2C read cycle which receives 
+one byte switch position from the slave and records it to the register recd_val.
 
 The code for the slave is provided in program 7.6. The slave port is configured using the med utility I2CSlave. 
-The program forms the register switch_word that carries the information of the switch positions as in the master program, 
-also, it listens to the I2C port. When the slave is addressed to read, it puts the reply message to the port automatically 
-which is set with the write() function. If the master addresses the slave for a write, slave can detect it by monitoring 
-the port with serial.receive(). If the value is 3, program stores the received value and sets up the LEDs on the master 
-accordingly.    
+The program forms the register switch_word that carries the information of the switch positions as in the master 
+program, also, it listens to the I2C port. When the slave is addressed to read, it puts the reply message to the 
+port automatically which is set with the write() function. If the master addresses the slave for a write, slave 
+can detect it by monitoring the port with serial.receive(). If the value is 3, program stores the received value 
+and sets up the LEDs on the master accordingly.    
 The video of this circuit can be seen at folder: 
 https://drive.google.com/drive/#folders/0B0LDTU59MYiieTRVSTQweHUtNTQ I2C_master_slave_example.
 
 Lastly, I changed the connections according to Figure 7.13 and tested UART program example of 7.9. 
-This example works the same as the previous I2C example. This time, the program sets a bidirectional UART communication port,
-where mbed functions async_port.putc() is used to transmit and asnc_port.getc() is used to receive the data.
+This example works the same as the previous I2C example. This time, the program sets a bidirectional UART 
+communication port, where mbed functions async_port.putc() is used to transmit and asnc_port.getc() is used to 
+receive the data.
 
 
