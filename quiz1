@@ -39,15 +39,13 @@ px = & x;
 
 Explain:
 
+const int * px; -> px is a non-constant pointer to constant data
+int const * px; -> pointer to a constant data
+int * const px; -> px is a constant pointer to non-constant data
 
-
-
-
-
-
-
-
-
+Here, the code the code tries to change the pointer.
+case 1 and 2 runs ok, because in these cases pointer is not constant.
+But, case 3 gives error, as the pointer is a const in case 3.   
 
 
 --------------------------------------------------------------------
