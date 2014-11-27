@@ -53,34 +53,35 @@ Q3: Write a function to set or clear ith bit of a 32-bit register.
 	Where ith (0-based) := {0, 1, 2, …, 31 } 
 void reg_set(volatile unsigned int * pReg, int ith) 
 { 
-
-
-
-
-
 } 
 
 void reg_clear(volatile unsigned int * pReg, int ith) 
 { 
-
-
-
-
-
 } 
 
 
+Answer:
+
+void reg_set(volatile unsigned int * pReg, int ith) 
+{ 
+	return *pReg |= (1 << ith);
+} 
+
+void reg_clear(volatile unsigned int * pReg, int ith) 
+{ 
+	return *pReg &= ~(1 << ith);
+} 
 
 --------------------------------------------------------------------
 Q4: Write a swap function in C.
 void swap(unsigned int * px, unsigned int *py) { 
+} 
 
-
-
-
-
-
-
+Answer:
+void swap(unsigned int * px, unsigned int *py) { 
+	int temp = * px;
+	* px = * py;
+	* py = temp;
 } 
 
 --------------------------------------------------------------------
@@ -90,3 +91,8 @@ unsigned int Arr[16];
 unsigned int a0 = (unsigned int) &Arr[0]; 
 unsigned int a3 = (unsigned int) &Arr[3]; 
 printf(“%d\n”, a3 – a0); 
+
+Answer:
+
+It is 3*4 = 12. a0 and a3 represents addresses of array cells which are 3 cells apart from each other.
+The array is defined for unsigned int, so each cell has a size of 4 bits.
