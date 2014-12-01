@@ -16,7 +16,7 @@ https://drive.google.com/drive/#folders/0B0LDTU59MYiieTRVSTQweHUtNTQ
 The details of the code is as follows:
 
 The TMP102 temperature sensor uses SMBus which is almost identical to the I2C standard. Here, I2C functions of the 
-mbed library are used for the interface betweenmbed and TMP102. 
+mbed library are used for the interface between mbed and TMP102. 
 At the start of the program, mbed reaches to the temperature sensor's configuration register and sets the operation mode. 
 After this initialization, the sensor will now operate and aquire temperature data.
 The mbed reaches to the data register, and reads two byte temperature value at each cycle. 
