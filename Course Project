@@ -1,0 +1,64 @@
+Portable temperature data logger - Group#5 (Yat Tam, Edward Ong, Emel Hizal)
+
+In this project, we built a temperature logger which utilizes TMP102 temperature sensor. 
+The mbed reaches to and collects the temperature data from the temperature sensor via I2C interface.
+The collected data is sent to an external USB drive and saved in an excel file, there.
+
+After the project scope is determined, each of our group members built their own hardware and we shared our project leranings
+throughout the process. 
+
+For the first step of the project, I built the I2C communication with temperature sensor experiment setup and tested 
+the outputs by observing the serial terminal with TeraTerm program. 
+The circuit can be seen in example_7_7_circuit.jpg and the output capture is at example_7_7.jpg 
+in the following folder:    
+https://drive.google.com/drive/#folders/0B0LDTU59MYiieTRVSTQweHUtNTQ 
+
+The details of the code is as follows:
+
+The TMP102 temperature sensor uses SMBus which is almost identical to the I2C standard. Here, I2C functions of the 
+mbed library are used for the interface betweenmbed and TMP102. 
+At the start of the program, mbed reaches to the temperature sensor's configuration register and sets the operation mode. 
+After this initialization, the sensor will now operate and aquire temperature data.
+The mbed reaches to the data register, and reads two byte temperature value at each cycle. 
+It then makes the necessary manipulation on the data, and converts it to a celsius-degree format.
+
+I observed that the ambient temperature was around 29.5 Degrees-Celsius. 
+I saw that the temperature rose to 32.44 Degrees-Celsius as I press my finger against the sensor 
+after about 10 readings, and slowly drops to the ambient temperature as I removed my finger.
+
+In the above example, the collected temperature data is sent to serial terminal, and observed from a terminal program real time.
+Our project objective is to store these collected data into a file. To do that, I need to add an external memory, 
+which in our case is a USB drive. 
+
+So, as a next step, I added the USB breakout, USB connections, linear regulator and the 9V battery to the system. 
+
+There are very good example project codes on mbed web site for utilizing mbed board as a USB Host device. 
+We used those resources to achieve the task of logging the temperature  data into a USB disk.
+One example is at: http://developer.mbed.org/users/igorsk/notebook/interfacing-usb-mass-storage-devices-aka-usb-flash/
+This code (can be imported at: http://developer.mbed.org/users/igorsk/code/MSCUsbHost/ ) provides the basics of our 
+mbed to USB connection.
+
+The details of the code is as follows:
+
+The code consists of two main abstraction layers that inherits and makes use of a bunch of libraries and base codes as is.
+The base layer is the USB Host Stack that is provided by NXP as USBHostLite. 
+(code can be downloaded at: http://www.lpcware.com/content/nxpfile/usbhostlite-lpc17xx 
+More information here: http://www.nxp.com/documents/application_note/AN10703.pdf )
+USBHostLite from NXP provides the following functions:
+- the initialization of the host controller (allocates memory, enables host clock, enables interrupts, etc.) 
+- the initialization of the mass storage device (checks whether the device is ready, checks the size of the device, etc. )
+- the initialization of the file system interface (This function reads the boot sector from the USB mass storage device 
+and stores the important information in a structure called BOOT_SEC. The file system uses this information for 
+read/write operations from/to the USB device. )
+- file open, file read, write, close functions.
+The second layer of astraction is a wrapper library that helps us to use the USB disk like a directory in our file system.
+This is a FAT file system library which inherits from and implements the required methods of the mbed's FATfileSystem library.
+These methods are defined as virtual methods (as stubs) in the mbed's original FATfileSystem library. Some of them are:
+- disk_initialize()
+- disk_status()
+- disk_read()
+- disk_write()
+
+With the help of all these abstractions, we were able to start mbed - USB mass storage communication cycle with a single
+MSCFileSystem [name_of_dir]("name_of_dir") command, and use standard fopen, fclose functions for file manipulation.
+
