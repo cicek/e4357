@@ -4,7 +4,7 @@ In this project, we built a temperature logger which utilizes TMP102 temperature
 The mbed reaches to and collects the temperature data from the temperature sensor via I2C interface.
 The collected data is sent to an external USB drive and saved in an excel file, there.
 
-After the project scope is determined, each of our group members built their own hardware and we shared our project leranings
+After the project scope is determined, each of our group members built their own hardware and we shared our project learnings
 throughout the process. 
 
 For the first step of the project, I built the I2C communication with temperature sensor experiment setup and tested 
