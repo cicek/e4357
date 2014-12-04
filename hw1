@@ -1,0 +1,105 @@
+Homework#1:
+
+Part I: C Programming (keep within 30 min)
+- Implement one c function
+   ex:
+   uint16_t gray_to_binary(uint16_t gray);
+   uint16_t binary_to_gray(uint16_t binary);
+   void *memcpy(void *dest, const void *src, size_t n);
+   void *malloc(size_t size, size_t alignment_size);
+   void free(void *ptr, size_t alignment_size);
+
+   /*
+    * r' = m * r
+    * where m is nxn matrix, r is nx1 vector
+    * @param m, a double pointer to a flat 2-dim array
+    * { r0c0, r0c1, ..., r0c[n-1],
+    *   r1c0, r1c1, ..., r1c[n-1],
+    *    ...
+    *   r[n-1]c0, r[n-1]c1, ..., r[n-1]c[n-1]
+    * }
+    * @param r, a double pointer to a 1-dim array
+    */
+    void next_rank(double *m, /*input */
+                   double *r, /*input and output */
+                   int n);
+
+Part II: Hardware (discovery keep within 1 hr)
+Here is one example:
+http://wiki.openwrt.org/toh/d-link/dir-600
+http://wiki.openwrt.org/_media/toh/d-link/ar72xx_usb_mod_solder_points.jpg
+
+1. find a device with a micro controller
+      (that you bought before)
+
+2. find hardware datasheets of major components in the device
+    search for major components
+    ex: CPU (mips, arm, or x86)
+	|- hardware datasheet
+	|- clock frequency
+	|- power source, voltage and current
+
+    ex: memory (NOR flash? SPI Interface Flash?)
+    ex: RS232 pins (power, ground, tx, rx)
+    ex: DDR memory if any
+          clk frequency
+
+3. find a firmware SDKs if any
+
+4. find prices info
+     |- price at the time you bought
+     |- price on today's market
+
+5. write a short summary includes links to datasheets and SDKs if any
+
+Answer:
+
+Part I can be found in hw1_lib.c .
+
+Part II:
+
+Google Galaxy Nexus GT-I9250M phone
+
+Device type: Smart phone
+Operating System: Android OS v4.3 (Jelly Bean)
+Chipset: TI OMAP 4460
+CPU: Dual-core 1.2 GHz Cortex-A9
+GPU: PowerVR SGX540
+Sensors: Accelerometer, gyro, proximity, compass, barometer
+Memory:  16 GB internal storage, 1 GB RAM
+Chips inside:
+- Texas Instruments TWL6040 8-Channel High Quality Low-Power Audio Codec
+- Texas Instruments TWL6030 Fully Integrated Power Management with Switch Mode Charger
+- Invensense MPU-3050 Motion Processing Unit
+- Intel XG626 Baseband Modem
+- Bosch BMP180 MEMS Pressure Sensor
+- RFMD RF6260 Quad-band Multimode Power Amplifier Module
+- Samsung KMVYL000LM Multichip Memory Package
+- Samsung K3PE7E700M 512 MB DDR2 SDRAM
+- Samsung SWB-B42 BT 4.0 Dual Band Wlan FM Tx/Rx
+- NXP 65N00 Smart Card IC
+- Silicon Image 9244 MHL transmitter
+- SiRF SiRFstarIV GSD4t GPS tracker
+- A Melfas 8PK173 1126 Touch Screen Controller
+
+Datasheet: http://www.ti.com/lit/ug/swpu235ab/swpu235ab.pdf
+
+The Cortex-A9 MPU subsystem of TI OMAP 4460 integrates the following submodules:
+• ARM Cortex-A9 MPCore
+– Two ARM Cortex-A9 central processing units (CPUs)
+– ARM Version 7 ISA™: Standard ARM instruction set plus Thumb®-2, Jazelle® RCT and Jazelle DBX Java™ accelerators
+– Neon™ SIMD coprocessor and VFPv3 per CPU
+– Interrupt controller (Cortex-A9 MPU INTC) with up to 128 interrupt requests
+– One general-purpose timer and one watchdog timer per CPU
+– Debug and trace features
+– 32-KB instruction and 32-KB data level 1 (L1) caches per CPU
+• Shared 1-MB level 2 (L2) cache
+• 48 KB bootable ROM
+• Local power, reset, and clock management (PRCM) module
+• Emulation features
+• Digital phase-locked loop (DPLL)
+
+Max CPU clock rate: 0.8GHz to 2GHz
+Instruction set: ARMv7
+L1 cache: 32 KB I, 32 KB D
+L2 cache: 128 KB - 8 MB (controllable with L2 cache controller)
