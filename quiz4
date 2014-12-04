@@ -96,3 +96,19 @@ int main(void) {
 		DisplayLed(ch); 
 	} 
 }
+
+Answer:
+
+I downloaded the above code for uVision-4 and ran it in debug mode to see the address values of ch and ledArr[0].
+The location value of the ch variable is 0x00000033.
+
+ledArr[0] should be the location where the corresponding data register for mbed's LED1 output can be set.
+It is the 18th pin of port 1: *port1_set P1_18 = (unsigned int *)0x2009C032 
+
+The screen capture of debug result is at Q5_debug_result.jpg at:
+
+https://drive.google.com/drive/#folders/0B0LDTU59MYiieTRVSTQweHUtNTQ . 
+
+(More information at : http://developer.mbed.org/handbook/mbed-library-internals )
+
+ 
