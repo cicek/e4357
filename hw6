@@ -1,0 +1,151 @@
+HW6
+
+Total hours spent: 6
+////////////////////////////////////////////////////////////////////////////
+#ifndef __CIRCULAR_BUFFER
+#define __CIRCULAR_BUFFER
+
+/* Implement a circularbuffer library with the following API interface */
+
+/**< Circular Buffer Types */
+typedef unsigned char INT8U;
+typedef INT8U KeyType ;
+typedef struct {  
+    INT8U writePointer ; /**< write pointer */  
+    INT8U readPointer ;  /**< read pointer */  
+    INT8U size;         /**< size of circular buffer */
+    INT8U mask;         /**< bit Mask of circular buffer size*/   
+    KeyType keys[0];    /**< Element of ciruclar buffer */
+} CircularBuffer ; 
+
+inline int CircularBufferIsFull(CircularBuffer* que)
+{ }
+inline int CircularBufferIsEmpty(CircularBuffer* que)
+{ }
+inline int CircularBufferEnque(CircularBuffer* que, KeyType k)
+{ }
+inline int CircularBufferDeque(CircularBuffer* que, KeyType* pK)
+{ }
+inline int CircularBufferPrint(CircularBuffer* que)
+{ }
+
+#endif
+////////////////////////////////////////////////////////////////////////////
+
+Circular buffer is a data structure that uses a single fixed-size buffer as if it were connected end-to-end. 
+This structure has a FIFO characteristics. 
+
+This implementation is called keep one slot open. The buffer has a fixed-size. 
+Two pointers are used to show the start and end locations. 
+One slot from the memory is always non-allocated. So, the used maximum size of the memory is buffer_size-1. 
+This is the drawback of this design otherwise robust and simple.
+
+The library functions are as follows:
+
+// Checks if the end pointer refers to the slot preceding the one referred to by the start pointer. 
+// If so, the buffer is full 
+// (Here, the end pointer is called write pointer and the start pointer is the read pointer.)
+
+inline int CircularBufferIsFull(CircularBuffer* que)
+{
+#if IS_BUFFER_SIZE_POWER_OF_TWO
+     return (((que->writePointer + 1) & que->mask) == que->readPointer); 
+#else
+     return (((que->writePointer + 1) % que->size) == que->readPointer); 
+#endif
+}
+
+// Checks if both the read and write pointers show the same location. If so, the buffer is empty. 
+
+inline int CircularBufferIsEmpty(CircularBuffer* que)
+{
+     return (que->readPointer == que->writePointer); 
+}
+
+inline int CircularBufferEnque(CircularBuffer* que, KeyType k)
+{
+        int isFull = CircularBufferIsFull(que);
+        if(!isFull) 
+        {
+        que->keys[que->writePointer] = k;
+        que->writePointer++;
+#if IS_BUFFER_SIZE_POWER_OF_TWO
+        que->writePointer &= que->mask;
+#else
+        que->writePointer %= que->size;
+#endif
+        }
+        return isFull;
+}
+ 
+inline int CircularBufferDeque(CircularBuffer* que, KeyType* pK)
+{
+        int isEmpty =  CircularBufferIsEmpty(que);
+        if(!isEmpty) 
+        {
+        *pK = que->keys[que->readPointer];
+        que->readPointer++;
+#if IS_BUFFER_SIZE_POWER_OF_TWO
+        que->readPointer &= que->mask;
+#else
+        que->readPointer %= que->size;
+#endif
+        }
+        return(isEmpty);
+}
+ 
+inline int CircularBufferPrint(CircularBuffer* que)
+{
+        int i=0;
+        int isEmpty =  CircularBufferIsEmpty(que);
+        int isFull  =  CircularBufferIsFull(que);
+        printf("\n==Q: w:%d r:%d f:%d e:%d\n", 
+            que->writePointer, que->readPointer,  isFull, isEmpty);
+        for(i=0; i< que->size; i++)
+        {
+           printf("%d ", que->keys[i]);
+        }
+        printf("\n");
+        return(isEmpty);
+}
+
+Implementation on mbed board:
+I used the main function given below: 
+
+int main(int argc, char *argv[])
+{
+        CircularBuffer* que;
+        KeyType a = 101;
+        int isEmpty, i;
+ 
+        CircularBufferInit(&que, BUFFER_SIZE);
+        CircularBufferPrint(que);
+ 
+        for(i=1; i<=3; i++)
+        {  
+            a=10*i;
+            printf("\n\n===\nTest: Insert %d-%d\n", a, a+NUM_OF_ELEMS-1);
+            while(! CircularBufferEnque(que, a++));
+ 
+            //CircularBufferPrint(que);
+            printf("\nRX%d:", i);
+            a=0;
+            isEmpty = CircularBufferDeque(que, &a); 
+            while (!isEmpty)
+            {
+                printf("%02d ", a);
+                a=0;
+                isEmpty = CircularBufferDeque(que, &a); 
+            }
+            //CircularBufferPrint(que);
+        }
+ 
+        free(que);
+        return 0;
+}
+
+I observed the results using TeraTerm. The terminal output can be seen at:  
+https://drive.google.com/drive/#folders/0B0LDTU59MYiieTRVSTQweHUtNTQ  - circular_buffer_output.png 
+
+Note: I used the implementaion on the wikipedia stub. 
+I had to remove #include <malloc.h> to make the program compile.
