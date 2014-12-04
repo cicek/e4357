@@ -62,3 +62,7 @@ These methods are defined as virtual methods (as stubs) in the mbed's original F
 With the help of all these abstractions, we were able to start mbed - USB mass storage communication cycle with a single
 MSCFileSystem [name_of_dir]("name_of_dir") command, and use standard fopen, fclose functions for file manipulation.
 
+
+You can find the related files and photos about the project at CourseProject folder of my Google Drive folder:
+
+https://drive.google.com/drive/#folders/0B0LDTU59MYiieTRVSTQweHUtNTQ
