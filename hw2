@@ -1,0 +1,71 @@
+
+4357 Embedded Firmware Essentials
+- Program Assignment #2
+
+1. Register & Login @ https://developer.mbed.org/
+
+2. https://developer.mbed.org/platforms/mbed-LPC1768/
+   - install firmware to your window
+   - download LPC1768 schematics and data sheets
+
+3. Export the "Hello World" program offline
+
+   What is the "Entry point address:" of your program?  (hint: using readelf)
+   a.	Exporting to uVision
+   b.	Exporting to GCC ARM Embedded
+
+   Note: Right Click your program, then select "export ..."
+
+4. binwalk, objdump, nm to Analysis binaries files
+   http://binwalk.org/
+
+5. git clone https://github.com/mbedmicro/mbed
+
+Answer:
+
+I registered to mbed web site and installed the development environment. 
+
+I exported the “Hello World” program to uVision and gcc ARM embedded. The following files and folders are created:
+
+(a) uVision:
+
+.hg (folder)
+mbed (folder)
+.hgignore
+HelloWorld.uvopt
+HelloWorld.uvproj
+main.cpp
+mbed.bld
+
+In the generated folder for uVision:
+
+There are two xml files that contain the project settings and instructions. These are  
+HelloWorld.uvopt and HelloWorld.uvproj. 
+HelloWorld.uvopt has 201 lines. HelloWorld.uvproj is 424 lines.
+There are 5 object (.o) files and 2 library (.ar) files. The files are in the following location:
+mbed/LPC1768/ARM
+
+
+(b) gcc ARM embedded:
+
+.hg (folder)
+mbed (folder)
+.hgignore
+main.cpp
+Makefile
+mbed.bld
+
+
+In the generated folder for gcc ARM:
+
+There is a text file, Makefile. It has 56 lines.     
+
+There are 4 object (.o) files and 2 library (.a) files. The files are in the following location:
+mbed/LPC1768/GCC_ARM
+
+
+
+The differences between (a) and (b) are:
+
+Project build files are different. uVision has HelloWorld.uvopt and HelloWorld.uvproj while gcc has Makefile. 
+The files in ARM folder of uVision and GCC_ARM folder of gcc ARM embedded are different other than the C/C++ Header (.h) files.
