@@ -14,3 +14,8 @@
 2. Search results are returned within 0.36 seconds.
 
 What is happening in the background?
+
+
+DNS server translates "google.com" into an IP address. 
+Web server serves up requested pages that get sent back to the browser 
+Browser interprets this data and displays.
